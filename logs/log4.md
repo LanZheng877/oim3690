@@ -1,0 +1,2 @@
+div=division
+nav=navigation

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lan Zheng | Personal Website</title>
+    <meta name="description" content="Lan Zheng — Babson College business student focused on Accounting & Analytics. Campus finance leadership. Incoming EY Assurance intern." />
+
+    <style>
+      :root{
+        --bg: #0b0f17;
+        --panel: rgba(255,255,255,0.06);
+        --panel-2: rgba(255,255,255,0.09);
+        --text: rgba(255,255,255,0.92);
+        --muted: rgba(255,255,255,0.70);
+        --muted-2: rgba(255,255,255,0.55);
+        --border: rgba(255,255,255,0.12);
+        --accent: #7bb8ff;
+        --accent-2: #b7ffda;
+        --shadow: 0 14px 40px rgba(0,0,0,0.35);
+        --radius: 16px;
+        --max: 980px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background:
+          radial-gradient(900px 500px at 10% 0%, rgba(123,184,255,0.22), transparent 55%),
+          radial-gradient(700px 480px at 90% 10%, rgba(183,255,218,0.16), transparent 60%),
+          radial-gradient(900px 700px at 50% 100%, rgba(123,184,255,0.12), transparent 60%),
+          var(--bg);
+      }
+
+      a { color: var(--text); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .wrap { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      /* Header */
+      header {
+        padding: 62px 0 28px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+      @media (max-width: 860px){
+        .hero { grid-template-columns: 1fr; }
+      }
+
+      .hero-left, .hero-right {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-left { padding: 22px; }
+      .hero-right { padding: 18px; display: flex; flex-direction: column; gap: 12px; justify-content: space-between; }
+
+      h1 { margin: 0; font-size: 44px; letter-spacing: -0.02em; line-height: 1.1; }
+      @media (max-width: 480px){ h1 { font-size: 36px; } }
+
+      .subtitle { margin: 10px 0 0; color: var(--muted); font-size: 16px; }
+      .tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+      .cta-row { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.08);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .btn:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+      .btn.primary {
+        border-color: rgba(123,184,255,0.55);
+        background: linear-gradient(135deg, rgba(123,184,255,0.22), rgba(183,255,218,0.12));
+      }
+      .btn.small { padding: 9px 12px; border-radius: 999px; font-weight: 600; font-size: 14px; }
+
+      .kv {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .kv .item {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 12px;
+      }
+      .kv .label { color: var(--muted-2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+      .kv .value { margin-top: 4px; font-weight: 700; }
+
+      /* Nav */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(10px);
+        background: rgba(11,15,23,0.65);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        gap: 12px;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+      .dot {
+        width: 10px; height: 10px; border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 0 4px rgba(123,184,255,0.12);
+      }
+      .links { display: flex; flex-wrap: wrap; gap: 12px; }
+      .links a {
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      .links a:hover { color: var(--text); text-decoration: none; border-color: var(--border); background: rgba(255,255,255,0.05); }
+
+      main { padding: 22px 0 60px; }
+
+      section { padding: 34px 0; border-bottom: 1px solid var(--border); }
+      section:last-child { border-bottom: 0; }
+      h2 { margin: 0 0 10px; font-size: 22px; letter-spacing: -0.01em; }
+      p { margin: 10px 0; color: var(--muted); }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 860px){ .grid { grid-template-columns: 1fr; } }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .card h3 { margin: 0 0 6px; font-size: 16px; }
+      .meta { color: var(--muted-2); font-size: 13px; margin: 0 0 10px; }
+      ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+      li { margin: 6px 0; }
+
+      .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+      .skill {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.06);
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .footer {
+        padding: 24px 0 40px;
+        color: var(--muted-2);
+        text-align: center;
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .note {
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted-2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="hero">
+          <div class="hero-left">
+            <h1>Lan Zheng</h1>
+            <p class="subtitle">
+              Babson College business student focused on <strong>Accounting</strong> &amp; <strong>Analytics</strong>.
+              I like turning messy data into clean, decision-ready insights — and I’m always down to learn new tools.
+            </p>
+
+            <div class="tags">
+              <span class="pill">Accounting</span>
+              <span class="pill">Business Analytics</span>
+              <span class="pill">Finance Leadership</span>
+              <span class="pill">Excel • Alteryx</span>
+            </div>
+
+            <div class="cta-row">
+              <a class="btn primary" href="#contact">Contact</a>
+              <a class="btn" href="#experience">Experience</a>
+              <a class="btn" href="#projects">Projects</a>
+            </div>
+
+            <p class="note">
+              Want this page to match your LinkedIn exactly? Replace the placeholder bullets below with your official role descriptions.
+            </p>
+          </div>
+
+          <div class="hero-right">
+            <div class="kv">
+              <div class="item">
+                <div class="label">Current focus</div>
+                <div class="value">Accounting + Analytics</div>
+              </div>
+              <div class="item">
+                <div class="label">Incoming</div>
+                <div class="value">EY — Assurance Associate</div>
+              </div>
+              <div class="item">
+                <div class="label">Leadership</div>
+                <div class="value">VP of Finance (Campus orgs)</div>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <a class="btn small" href="https://www.linkedin.com/in/lan-zheng04/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="btn small" href="mailto:lan@example.com">Email</a>
+              <a class="btn small" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dot"></span> Lan Zheng</div>
+
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+
+
+
+    <main>
+      <div class="wrap">
+        <!-- About -->
+        <section id="about">
+          <h2>About</h2>
+          <p>
+            Hi! I’m Lan — a business student at Babson College with interests in accounting, audit, and analytics.
+            I enjoy structured problem-solving, building repeatable processes, and presenting results in a way that
+            non-technical teammates can immediately use.
+          </p>
+          <p>
+            Recently, I’ve been sharpening practical skills through ETL/data-cleaning work (Excel, Alteryx) and
+            campus finance leadership, where accuracy and clear communication matter.
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+          <h2>Experience</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Ernst &amp; Young (EY) — Assurance Intern</h3>
+              <p class="meta">New York City • Summer 2025</p>
+              <ul>
+                <li>Performed related party inspections to support compliance and ensure material financial relationships are accurately disclosed with Client Financials.</li>
+                <li>Populated and revised Trial Balance (TB) and Accounting Comparison Report to accurately inspect and inquire regarding large numerical risk assessment fluxes over given a time frame.</li>
+                <li><em>Conducted user game testing over 4 games as part of control and substantive testing which assisted with the recalculation and tracking of client capitalized software figures.</em></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Campus Activities Board — VP of Finance, Executive VP</h3>
+              <p class="meta">Babson College • (April 2024 - Present)</p>
+              <ul>
+                <li>Managed budgets, reimbursements, and financial tracking for campus-wide events and programming.</li>
+                <li>Coordinated with stakeholders to keep spending aligned with approvals and deadlines.</li>
+                <li>Oversaw general board committees.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>HOX Business Fraternity — VP of Finance</h3>
+              <p class="meta">Babson College • (April 2024 - June 2025)</p>
+              <ul>
+                <li>Handled dues/budgeting, track event expenses, and support financial planning for member programming.</li>
+                <li>Ensured clean records and transparent communication for reimbursements and allocations.</li>
+                <li>Supported recruitment and professional events logistics.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Babson Dance Ensemble - Project Manager</h3>
+              <p class="meta">Babson College • (December 2023 - December 2024)</p>
+              <ul>
+                <li>Created and designed the show program that is distributed to the audience during the show, ensuring a cohesive and visually appealing representation of the dance ensemble's productions</li>
+                <li>Communicated and negotiated with suppliers to finalize semester-based merchandise for the organization.</li>
+                <li>Kept track of merchandise and related payments.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+          <h2>Projects</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>ETL &amp; Data Cleaning (Alteryx / Excel)</h3>
+              <p class="meta">Accounting Analytics, Accounting Information System</p>
+              <ul>
+                <li>Joined multi-tab accounting datasets (e.g., journal line items + chart of accounts + preparer info).</li>
+                <li>Standardized numeric fields (remove commas, convert to numbers), handled NULLs, and validated row counts.</li>
+                <li>Created clean outputs for downstream analysis and reporting.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Business / Strategy Analysis</h3>
+              <p class="meta">Strategic Problem Solving, Babson MCFE</p>
+              <ul>
+                <li>Competitive and operations-focused analysis using structured frameworks (e.g., value chain, risk, KPIs).</li>
+                <li>Turned research into clear slides/pages with actionable recommendations.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+          <h2>Skills</h2>
+          <div class="skills">
+            <span class="skill">Excel (PivotTables, Lookup, Modeling)</span>
+            <span class="skill">Alteryx (ETL, Joins, Cleaning)</span>
+            <span class="skill">Financial Analysis</span>
+            <span class="skill">Accounting (Financial Reporting)</span>
+            <span class="skill">Audit &amp; Controls (Foundations)</span>
+            <span class="skill">PowerPoint / Storytelling</span>
+            <span class="skill">Team Leadership</span>
+            <span class="skill">Process Improvement</span>
+          </div>
+        </section>
+
+        <!-- Hobbies -->
+        <section id="hobbies">
+          <h2>Hobbies</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Dance &amp; Performance</h3>
+              <p class="meta">Choreo, practice, and stage energy</p>
+              <ul>
+                <li>I enjoy dance performances and learning choreography (especially pop / hip-hop).</li>
+                <li>It keeps me disciplined, creative, and confident presenting in public.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Music, Culture, &amp; Exploring</h3>
+              <p class="meta">Playlists, concerts, travel, food</p>
+              <ul>
+                <li>I love discovering music scenes and how culture travels across communities.</li>
+                <li>I’m also a big fan of exploring new spots and trying new food.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>
+            The fastest way to reach me is email or LinkedIn. I’m happy to connect about internships, accounting/analytics,
+            and campus leadership.
+          </p>
+
+          <div class="contact-row">
+            <a class="btn primary" href="mailto:lzheng2@babson.edu">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/in/lan-zheng04/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener noreferrer">View GitHub</a>
+          </div>
+
+          <p class="note">
+           
+          </p>
+        </section>
+
+        <div class="footer">
+          <p>© <span id="year"></span> Lan Zheng</p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
