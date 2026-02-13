@@ -1,0 +1,1 @@
+why do we want ot attribute?? in image/?

@@ -1,0 +1,12 @@
+h1{
+    color: rgb(255, 0, 162);
+font: 60px "Times New Roman", Times, serif, bold;
+font-family: "Times New Roman", Georgia, 'Times New Roman', Times, serif;
+font-style: oblique;
+background-color: rgb(255, 188, 223);
+}
+
+p{color: rgb(194, 61, 121);}
+
+h2{color: rgb(0, 44, 140);
+background: rgb(165, 214, 255);}
