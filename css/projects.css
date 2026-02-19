@@ -1,0 +1,12 @@
+h1{ color: rgb(255, 154, 191);
+padding: 10px;
+border: 5px solid rgb(128, 0, 58);
+}
+
+
+h2{color: rgb(0, 140, 0);
+background-color: rgb(255, 255, 95);
+background-blend-mode: soft-light;
+}
+
+p{color: rgb(0, 0, 255);}
