@@ -8,3 +8,5 @@ would you expect us to know write the code for css? for example the hover elemen
 Could you post checkpoint as assignment on canvas with deadline please? That would be super helpful!
 could you explain more on the concept p.yellow{} .class1?
 we usually use external css code, when would you recommend using inline css code?
+C:\Users\lzheng2\Documents\GitHub\oim3690\images\frog game webtech.png
+Above is the frog game screenshot, I couldn't figure out the last level!
