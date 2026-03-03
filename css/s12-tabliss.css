@@ -1,0 +1,55 @@
+/* fix selector and URL syntax; path is relative to this CSS file */
+body {
+    background-image: url("../images/art.png");
+    background-size: cover;      /* scales to fill viewport */
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;           /* ensure background covers full screen height */
+    margin: 0;                   /* remove default body margins */
+    background-attachment: fixed;/* optional: keep image fixed when scrolling */
+}
+
+/* central clock container */
+.clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #333;
+}
+
+.time {
+    font-size: 5rem;           /* make the time text large */
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+}
+
+.date {
+    font-size: 1.5rem;           /* make the date text medium */
+    font-weight: normal;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: #555;
+}
+
+/* links below the clock */
+.links {
+    margin-top: 20px;
+}
+
+.links .link {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.25rem;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+
+.links .link:hover {
+    color: var(--accent);
+}

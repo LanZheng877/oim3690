@@ -4,9 +4,39 @@
   <meta charset="utf-8" />
   <title>Employees</title>
   <style>
-    table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #f4f4f4; }
+    :root{
+      --bg: #ffffff;
+      --muted: #f4f6f9;
+      --border: #d7dde6;
+      --accent: #2563eb;
+      --accent-2: #0ea5a4;
+      --row-hover: rgba(37,99,235,0.06);
+      --cell-hover: rgba(14,165,164,0.04);
+    }
+
+    body { background: var(--bg); font-family: Arial, sans-serif; color: #111; padding: 20px; }
+
+    table { border-collapse: collapse; width: 100%; box-shadow: 0 1px 0 rgba(0,0,0,0.03); }
+    th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; transition: background 180ms ease, transform 160ms ease; }
+    th { background: var(--muted); color: var(--accent); font-weight: 700; }
+
+    /* zebra rows */
+    tbody tr:nth-child(even) td { background: #fbfdff; }
+
+    /* row hover (highlight whole row) */
+    tbody tr:hover td { background: var(--row-hover); transform: translateX(2px); }
+    tbody tr { transition: transform 160ms ease; cursor: default; }
+
+    /* highlight name cell on hover */
+    td.name { font-weight: 600; color: var(--accent-2); transition: color 150ms ease, transform 150ms ease; }
+    td.name:hover { color: var(--accent); transform: scale(1.02); }
+
+    /* salary subtle highlight */
+    td.salary { color: #0b7a3e; font-weight: 600; }
+    td.salary:hover { background: var(--cell-hover); }
+
+    /* header hover effect */
+    th:hover { background: #e9f0ff; }
   </style>
 </head>
 <body>
@@ -16,12 +46,12 @@
       <tr><th>ID</th><th>Name</th><th>Department</th><th>Role</th><th>Start Date</th><th>Salary</th></tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>Alice Johnson</td><td>Engineering</td><td>Senior Software Engineer</td><td>2021-06-14</td><td>$120,000</td></tr>
-      <tr><td>2</td><td>Ben Carter</td><td>Product</td><td>Product Manager</td><td>2022-01-03</td><td>$105,000</td></tr>
-      <tr><td>3</td><td>Chen Li</td><td>Data</td><td>Data Scientist</td><td>2020-09-21</td><td>$115,000</td></tr>
-      <tr><td>4</td><td>Diana Ruiz</td><td>Design</td><td>UX Designer</td><td>2023-03-11</td><td>$90,000</td></tr>
-      <tr><td>5</td><td>Ethan Park</td><td>Marketing</td><td>Growth Marketer</td><td>2021-11-02</td><td>$85,000</td></tr>
-      <tr><td>6</td><td>Farah Khan</td><td>Sales</td><td>Account Executive</td><td>2019-07-30</td><td>$95,000</td></tr>
+      <tr><td>1</td><td class="name">Alice Johnson</td><td>Engineering</td><td>Senior Software Engineer</td><td>2021-06-14</td><td class="salary">$120,000</td></tr>
+      <tr><td>2</td><td class="name">Ben Carter</td><td>Product</td><td>Product Manager</td><td>2022-01-03</td><td class="salary">$105,000</td></tr>
+      <tr><td>3</td><td class="name">Chen Li</td><td>Data</td><td>Data Scientist</td><td>2020-09-21</td><td class="salary">$115,000</td></tr>
+      <tr><td>4</td><td class="name">Diana Ruiz</td><td>Design</td><td>UX Designer</td><td>2023-03-11</td><td class="salary">$90,000</td></tr>
+      <tr><td>5</td><td class="name">Ethan Park</td><td>Marketing</td><td>Growth Marketer</td><td>2021-11-02</td><td class="salary">$85,000</td></tr>
+      <tr><td>6</td><td class="name">Farah Khan</td><td>Sales</td><td>Account Executive</td><td>2019-07-30</td><td class="salary">$95,000</td></tr>
     </tbody>
   </table>
 </body>
