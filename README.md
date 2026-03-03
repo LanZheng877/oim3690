@@ -5,4 +5,4 @@ This is my course repository for OIM3690
 - Name: Lan Zheng
 ## Links
 - [My Portfolio](https://LanZheng877.github.io)
-- [project1HOX] (https://lanzheng877.github.io/project1HOX/)
+- [project1HOX](https://lanzheng877.github.io/project1HOX/)
