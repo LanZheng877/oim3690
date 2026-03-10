@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        section { margin-bottom: 2rem; }
+        canvas { border: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+<h1>Playground</h1>
+
+<section>
+    <h2>Embedded YouTube Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</section>
+
+<section>
+    <h2>Babson Campus Map</h2>
+    <!-- replace the src with a fresh embed link if needed -->
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2942.900834166504!2d-71.26718568454248!3d42.293738979190316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e379eab3a30e1f%3A0x590e4f5c7fcd8db6!2sBabson%20College!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus" 
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<section>
+    <h2>Audio &amp; Video</h2>
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <br><br>
+    <video controls width="320">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+<section>
+    <h2>FAQ (collapsible)</h2>
+    <details>
+        <summary>What is this page?</summary>
+        <p>This is a playground page demonstrating various HTML5 features.</p>
+    </details>
+    <details>
+        <summary>Where is Babson College?</summary>
+        <p>Babson College is located in Wellesley, Massachusetts, USA.</p>
+    </details>
+</section>
+
+<section>
+    <h2>Canvas Drawing</h2>
+    <canvas id="myCanvas" width="300" height="150"></canvas>
+    <script>
+        // simple drawing with canvas
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#FFCC00';
+        ctx.fillRect(10, 10, 100, 100);
+        ctx.beginPath();
+        ctx.arc(150, 75, 50, 0, Math.PI * 2);
+        ctx.fillStyle = '#0099CC';
+        ctx.fill();
+        ctx.strokeStyle = '#000';
+        ctx.stroke();
+    </script>
+</section>
+
+</body>
+</html>
