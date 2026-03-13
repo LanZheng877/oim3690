@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everyday to do list</title>
+    <style>
+        /* overall pink theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background: #ffe4f0;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #c71585;
+        }
+
+        /* input area */
+        #new-task {
+            width: 70%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #c71585;
+            border-radius: 4px;
+        }
+        #add-button {
+            padding: 0.55rem 1rem;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            background: #c71585;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        #add-button:hover {
+            background: #a0146e;
+        }
+
+        /* layout columns */
+        .columns {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .column {
+            flex: 1;
+            background: #fff0f6;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: transform .2s, opacity .2s;
+        }
+        li.enter {
+            animation: fadeIn .3s ease;
+        }
+        li.enter-left {
+            animation: slideInLeft .3s ease;
+        }
+        li.enter-right {
+            animation: slideInRight .3s ease;
+        }
+        li.removing {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-10px);} 
+            to {opacity: 1; transform: translateY(0);} 
+        }
+        @keyframes slideInLeft {
+            from {opacity: 0; transform: translateX(-20px);} 
+            to {opacity: 1; transform: translateX(0);} 
+        }
+        @keyframes slideInRight {
+            from {opacity: 0; transform: translateX(20px);} 
+            to {opacity: 1; transform: translateX(0);} 
+        }
+        span:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            transition: transform .2s;
+        }
+        li.completed span {
+            text-decoration: line-through;
+            color: #777;
+        }
+        li button {
+            margin-left: auto;
+            background: crimson;
+            color: #fff;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background .2s;
+        }
+        li button:hover {
+            background: #a00;
+        }
+        /* specific style for completion toggle checkbox */
+        li .toggle-checkbox {
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+            accent-color: green;
+            transition: transform .2s, filter .2s;
+            margin-left: 0.5rem; /* space from delete button */
+        }
+        li .toggle-checkbox:hover {
+            filter: brightness(1.2);
+        }
+        li .toggle-checkbox:checked {
+            transform: scale(1.2);
+        }
+        li.completed .toggle-checkbox {
+            accent-color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Everyday to do list</h1>
+    <div>
+        <input type="text" id="new-task" placeholder="Enter a new task" />
+        <button id="add-button">Add</button>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <h2>To&nbsp;Do</h2>
+            <ul id="todo-tasks"></ul>
+        </div>
+        <div class="column">
+            <h2>Done</h2>
+            <ul id="done-tasks"></ul>
+        </div>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('new-task');
+        const addButton = document.getElementById('add-button');
+        const todoList = document.getElementById('todo-tasks');
+        const doneList = document.getElementById('done-tasks');
+
+        let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function renderTasks() {
+            todoList.innerHTML = '';
+            doneList.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                // prepare animation class; added again when appending to appropriate list
+                if (task.completed) {
+                    li.classList.add('enter-right');
+                } else {
+                    li.classList.add('enter-left');
+                }
+                setTimeout(() => {
+                    li.classList.remove('enter-left','enter-right');
+                }, 300);
+
+                if (task.completed) li.classList.add('completed');
+
+                const span = document.createElement('span');
+                span.textContent = task.text;
+
+                // checkbox toggle for completion state
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = task.completed;
+                checkbox.className = 'toggle-checkbox';
+                checkbox.addEventListener('change', () => {
+                    // animate and move
+                    li.classList.add('removing');
+                    setTimeout(() => {
+                        tasks[index].completed = checkbox.checked;
+                        saveTasks();
+                        renderTasks();
+                    }, 200);
+                });
+                // checkbox will sit just before delete; no auto margin
+                // (keep positioning in CSS instead)
+
+                // make sure delete button follows
+
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.addEventListener('click', () => {
+                    li.classList.add('removing');
+                    setTimeout(() => {
+                        tasks.splice(index, 1);
+                        saveTasks();
+                        renderTasks();
+                    }, 200);
+                });
+
+                li.appendChild(span);
+                li.appendChild(deleteBtn);
+                li.appendChild(checkbox);
+
+                if (task.completed) {
+                    doneList.appendChild(li);
+                } else {
+                    todoList.appendChild(li);
+                }
+            });
+        }
+
+        addButton.addEventListener('click', () => {
+            const text = taskInput.value.trim();
+            if (!text) return;
+            tasks.push({ text, completed: false });
+            taskInput.value = '';
+            saveTasks();
+            renderTasks();
+        });
+
+        taskInput.addEventListener('keyup', e => {
+            if (e.key === 'Enter') addButton.click();
+        });
+
+        renderTasks();
+    </script>
+</body>
+</html>
