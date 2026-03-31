@@ -30,8 +30,30 @@
       const gradeResult = document.getElementById('gradeResult');
 
       gradeBtn.addEventListener('click', () => {
-        const score = Number(scoreInput.value);
-        gradeResult.textContent = getGrade(score);
+        const scoreValue = scoreInput.value.trim();
+
+        if (scoreValue === '') {
+          gradeResult.textContent = 'Please enter a score';
+          gradeResult.style.color = 'black';
+          return;
+        }
+
+        const score = Number(scoreValue);
+        if (Number.isNaN(score) || score < 0 || score > 100) {
+          gradeResult.textContent = 'Score must be 0-100';
+          gradeResult.style.color = 'black';
+          return;
+        }
+
+        const grade = getGrade(score);
+        gradeResult.textContent = grade;
+        if (grade === 'A' || grade === 'B') {
+          gradeResult.style.color = 'green';
+        } else if (grade === 'D' || grade === 'F') {
+          gradeResult.style.color = 'red';
+        } else {
+          gradeResult.style.color = 'orange';
+        }
       });
     </script>
   </body>
