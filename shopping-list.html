@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: white;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 8px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping List</h1>
+    
+    <div class="input-container">
+        <input 
+            type="text" 
+            id="itemInput" 
+            placeholder="Enter grocery item..."
+        >
+        <button id="addBtn">Add Item</button>
+    </div>
+    
+    <ul id="itemList"></ul>
+
+    <script>
+        // Initial array of grocery items
+        let shoppingList = ["milk", "eggs", "bread"];
+
+        // Function to render the list from the array
+        function renderList() {
+            // Get the ul element
+            const listElement = document.getElementById("itemList");
+            
+            // Clear the list (remove all previous items)
+            listElement.innerHTML = "";
+            
+            // Loop through the array and add each item to the list
+            for (let i = 0; i < shoppingList.length; i++) {
+                const item = shoppingList[i];
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                listElement.appendChild(listItem);
+            }
+        }
+
+        // Function to add a new item
+        function addItem() {
+            const inputElement = document.getElementById("itemInput");
+            const newItem = inputElement.value.trim();
+            
+            // Check if input is not empty
+            if (newItem !== "") {
+                // Add the new item to the array
+                shoppingList.push(newItem);
+                
+                // Clear the input field
+                inputElement.value = "";
+                
+                // Re-render the list
+                renderList();
+            }
+        }
+
+        // Get the button element
+        const addButton = document.getElementById("addBtn");
+        
+        // Add click event to button
+        addButton.addEventListener("click", addItem);
+
+        // Also allow adding items by pressing Enter key
+        const inputElement = document.getElementById("itemInput");
+        inputElement.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addItem();
+            }
+        });
+
+        // Render the initial list when page loads
+        renderList();
+    </script>
+</body>
+</html>
