@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9em;
+        }
+        
+        .stat-value {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 5px;
+        }
+        
+        .score-bars {
+            margin: 20px 0;
+        }
+        
+        .score-bar-container {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .score-bar {
+            height: 30px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            min-width: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .score-bar:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .grade-a-b {
+            background-color: #27ae60;
+        }
+        
+        .grade-c-d {
+            background-color: #f39c12;
+        }
+        
+        .grade-f {
+            background-color: #e74c3c;
+        }
+        
+        .score-info {
+            font-size: 0.95em;
+            color: #333;
+            min-width: 120px;
+        }
+        
+        .grade-distribution {
+            margin: 20px 0;
+        }
+        
+        input[type="number"] {
+            padding: 8px;
+            font-size: 1em;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        button {
+            padding: 8px 20px;
+            font-size: 1em;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1a252f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Score Analyzer</h1>
+    
+    <h2>Part 1 - Statistics</h2>
+    <div class="stats" id="statistics"></div>
+    
+    <h2>Part 2 - Score Breakdown</h2>
+    <div class="score-bars" id="scoreBars"></div>
+    
+    <h2>Part 3 - Grade Distribution</h2>
+    <div class="grade-distribution" id="gradeDistribution"></div>
+    
+    <h2>Part 4 - Add New Score</h2>
+    <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+        <input type="number" id="scoreInput" min="0" max="100" placeholder="Enter score (0-100)" style="padding: 8px; font-size: 1em; margin-right: 10px;">
+        <button id="addScoreBtn" style="padding: 8px 20px; font-size: 1em; background-color: #2c3e50; color: white; border: none; border-radius: 3px; cursor: pointer;">Add Score</button>
+    </div>
+    
+    <script>
+        let scores = [88, 72, 95, 63, 81, 56, 90];
+        
+        // Function to get letter grade
+        function getLetterGrade(score) {
+            if (score >= 90) return 'A';
+            if (score >= 80) return 'B';
+            if (score >= 70) return 'C';
+            if (score >= 60) return 'D';
+            return 'F';
+        }
+        
+        // Function to get CSS class based on grade
+        function getGradeClass(score) {
+            const grade = getLetterGrade(score);
+            if (grade === 'A' || grade === 'B') return 'grade-a-b';
+            if (grade === 'C' || grade === 'D') return 'grade-c-d';
+            return 'grade-f';
+        }
+        
+        // Function to update all displays
+        function updateAllDisplays() {
+            updateStatistics();
+            updateScoreBars();
+            updateGradeDistribution();
+            clearInput();
+        }
+        
+        // ===== PART 1: Statistics =====
+        function updateStatistics() {
+            // Total number of scores
+            const totalScores = scores.length;
+            
+            // Calculate average
+            let sum = 0;
+            for (let score of scores) {
+                sum += score;
+            }
+            const average = (sum / scores.length).toFixed(1);
+            
+            // Find highest
+            let highest = scores[0];
+            for (let score of scores) {
+                if (score > highest) highest = score;
+            }
+            
+            // Find lowest
+            let lowest = scores[0];
+            for (let score of scores) {
+                if (score < lowest) lowest = score;
+            }
+            
+            // Count passing scores (>= 60)
+            let passingCount = 0;
+            for (let score of scores) {
+                if (score >= 60) passingCount++;
+            }
+            
+            // Display Part 1 statistics
+            const statsDiv = document.getElementById('statistics');
+            statsDiv.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-label">Total Scores</div>
+                    <div class="stat-value">${totalScores}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Average</div>
+                    <div class="stat-value">${average}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Highest</div>
+                    <div class="stat-value">${highest}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lowest</div>
+                    <div class="stat-value">${lowest}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Passing Scores (≥60)</div>
+                    <div class="stat-value">${passingCount}</div>
+                </div>
+            `;
+        }
+        
+        // ===== PART 2: Score Bars =====
+        function updateScoreBars() {
+            const barsDiv = document.getElementById('scoreBars');
+            let barsHTML = '';
+            
+            for (let score of scores) {
+                const grade = getLetterGrade(score);
+                const gradeClass = getGradeClass(score);
+                
+                barsHTML += `
+                    <div class="score-bar-container">
+                        <div class="score-bar ${gradeClass}" style="width: ${score}%;">
+                            ${score}
+                        </div>
+                        <div class="score-info">
+                            Grade: <strong>${grade}</strong>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            barsDiv.innerHTML = barsHTML;
+        }
+        
+        // ===== PART 3: Grade Distribution =====
+        function updateGradeDistribution() {
+            // Count each grade
+            const gradeCounts = {A: 0, B: 0, C: 0, D: 0, F: 0};
+            
+            for (let score of scores) {
+                const grade = getLetterGrade(score);
+                gradeCounts[grade]++;
+            }
+            
+            // Find max count for scaling
+            let maxCount = 0;
+            for (let grade in gradeCounts) {
+                if (gradeCounts[grade] > maxCount) maxCount = gradeCounts[grade];
+            }
+            
+            // Create distribution chart
+            const distributionDiv = document.getElementById('gradeDistribution');
+            let distributionHTML = '<div style="display: flex; gap: 20px; align-items: flex-end; padding: 20px; background-color: #f5f5f5; border-radius: 5px; min-height: 200px;">';
+            
+            const gradeOrder = ['A', 'B', 'C', 'D', 'F'];
+            const colors = {A: '#27ae60', B: '#27ae60', C: '#f39c12', D: '#f39c12', F: '#e74c3c'};
+            
+            for (let grade of gradeOrder) {
+                const count = gradeCounts[grade];
+                const heightPercent = maxCount > 0 ? (count / maxCount) * 100 : 0;
+                
+                distributionHTML += `
+                    <div style="text-align: center; flex: 1;">
+                        <div style="background-color: ${colors[grade]}; height: ${heightPercent}px; min-height: 20px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: flex-end; justify-content: center; color: white; font-weight: bold; min-width: 40px;">
+                            ${count > 0 ? count : ''}
+                        </div>
+                        <strong>${grade}</strong>
+                    </div>
+                `;
+            }
+            
+            distributionHTML += '</div>';
+            distributionDiv.innerHTML = distributionHTML;
+        }
+        
+        // ===== PART 4: Add New Score =====
+        function clearInput() {
+            document.getElementById('scoreInput').value = '';
+        }
+        
+        document.getElementById('addScoreBtn').addEventListener('click', function() {
+            const input = document.getElementById('scoreInput');
+            const value = parseFloat(input.value);
+            
+            if (isNaN(value) || value < 0 || value > 100) {
+                alert('Please enter a valid score between 0 and 100');
+                return;
+            }
+            
+            scores.push(value);
+            updateAllDisplays();
+        });
+        
+        // Allow Enter key to add score
+        document.getElementById('scoreInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('addScoreBtn').click();
+            }
+        });
+        
+        // Initial display
+        updateAllDisplays();
+    </script>
+</body>
+</html>
