@@ -9,6 +9,7 @@
         <button> click me </button>
         <p id="result"></p>
     
+        <script src="js/config.js"></script>
         <script>
 const button = document.querySelector('button');
 const result = document.getElementById('result');
@@ -27,7 +28,7 @@ async function postMessage(text) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Token': 'LanLan'  // your first name x2
+      'X-Token': OIMtoken  // your first name x2
     },
     body: JSON.stringify({ message: text })
   });
