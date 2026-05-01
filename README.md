@@ -8,4 +8,4 @@ This is my course repository for OIM3690
 - [Mini Project1 HOX](https://lanzheng877.github.io/project1HOX/)
 - [project2 Random decision maker+Todo List](https://lanzheng877.github.io/project2Randomdecisionmaker/)
 - [Project3 Travel App](https://lanzheng877.github.io/Project3TravelApp/)
-- [Project3 Travel App](https://lanzheng877.github.io/finalprojectcpaplanner/)
+- [Final Project CPA Planner](https://lanzheng877.github.io/finalprojectcpaplanner/)
