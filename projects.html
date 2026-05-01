@@ -1,21 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Projects</title>
-    <link rel="stylesheet" href="css/projects.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OIM3690 Web Technologies | Lan Zheng</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(135deg, #f7f1ff, #fff7fb);
+      color: #2d2338;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 70px 25px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #4b2e83;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #6b5b7b;
+      margin-bottom: 40px;
+    }
+
+    .about {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(75, 46, 131, 0.12);
+      margin-bottom: 45px;
+    }
+
+    .about h2,
+    .projects h2 {
+      color: #4b2e83;
+      margin-bottom: 10px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-top: 25px;
+    }
+
+    .project-card {
+      background: white;
+      padding: 28px 22px;
+      border-radius: 22px;
+      text-decoration: none;
+      color: #2d2338;
+      box-shadow: 0 8px 25px rgba(75, 46, 131, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #eee4ff;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 35px rgba(75, 46, 131, 0.2);
+    }
+
+    .project-card h3 {
+      margin: 0 0 12px;
+      color: #4b2e83;
+      font-size: 21px;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: #6b5b7b;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 55px;
+      font-size: 14px;
+      color: #7b6f8f;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>My Projects</h1>
-     <link rel="stylesheet" href="/css/projects.css" />
-    <p>A collection of projects from OIM3690.</p>
-    <div>
-        <h2>Project 1</h2>
-        <p>Coming soon...</p>
-    </div>
-    <div>
-        <h2>Project 2</h2>
-        <p>Coming soon...</p>
-    </div>
+  <div class="container">
+    <h1>OIM3690 Web Technologies</h1>
+    <p class="subtitle">Course Repository by Lan Zheng</p>
+
+    <section class="about">
+      <h2>About Me</h2>
+      <p>Hi, I’m Lan Zheng. This page includes my projects from OIM3690 Web Technologies.</p>
+    </section>
+
+    <section class="projects">
+      <h2>Project Links</h2>
+
+      <div class="project-grid">
+        <a class="project-card" href="https://LanZheng877.github.io" target="_blank">
+          <h3>My Portfolio</h3>
+          <p>My personal portfolio website.</p>
+        </a>
+
+        <a class="project-card" href="https://lanzheng877.github.io/project1HOX/" target="_blank">
+          <h3>Mini Project 1: HOX</h3>
+          <p>A website project for Eta Omega Chi.</p>
+        </a>
+
+        <a class="project-card" href="https://lanzheng877.github.io/project2Randomdecisionmaker/" target="_blank">
+          <h3>Project 2: Random Decision Maker + To-Do List</h3>
+          <p>A daily tool for making decisions and tracking tasks.</p>
+        </a>
+
+        <a class="project-card" href="https://lanzheng877.github.io/Project3TravelApp/" target="_blank">
+          <h3>Project 3: Travel App</h3>
+          <p>A travel passport planner with country information and itinerary ideas.</p>
+        </a>
+
+        <a class="project-card" href="https://lanzheng877.github.io/finalprojectcpaplanner/" target="_blank">
+          <h3>Final Project: CPA Planner</h3>
+          <p>A study planner designed to organize CPA exam preparation.</p>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Lan Zheng | OIM3690 Web Technologies
+    </footer>
+  </div>
 </body>
 </html>
